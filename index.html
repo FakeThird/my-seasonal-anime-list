@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='stylesheet.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>MyAnimeOpinions</title>
+</head>
+<body>
+    <div class='body-overlay'></div>
+    <header>
+        <div class="header-overlay"></div>
+        <div class="title-container">MyAnimeOpinions</div>    
+    </header>
+    <div class='anime-section'>
+        <section class="anime-list-container">
+            <input class='search-bar' type='text' placeholder='Search Anime'>    
+            <section class='anime-gallery'></section>
+        </section>
+        <main class="list-container">
+            <!-- <navbar class="nav-container">
+                <selection class="destination personal"><h4>Personal List</h4></selection>
+                <selection class="destination collabing"><h4>Collaborative List</h4></selection>
+            </navbar>
+            <section class="todo-header">
+                <div class="new-task-btn-container">
+                    <button class="new-task-btn primary-btn">Add Task +</button>
+                    <button class="manage-collaborator-btn primary-btn  ">Manage Collaborators </button>
+                    <button class="view-collaborator-btn primary-btn  ">View Collaborators </button>
+                </div> 
+                <div class="filters-container">
+                    <p>Sort by: </p>
+                    <select class="sort-dropdown">
+                        <option value="date-added">Date Added</option>
+                        <option value="date-due">Date Due</option>
+                        <option value="priority">Priority</option>
+                    </select>
+                </div>
+            </section>   -->
+            <div class="table-wrapper">
+                <table class="anime-list">
+                    <thead>
+                        <tr>
+                            <th class="col-title">Anime Title</th>
+                            <th class="col-watched">Watched</th>
+                            <th class="col-episode">Current EP</th>
+                            <th class="col-status">Status</th>
+                            <th class="col-rating">Rating</th>
+                            <th class="col-op">OP</th>
+                            <th class="col-ed">ED</th>
+                            <th class="col-utils"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+<script type="module" src="scripts.js"></script>
+</html>

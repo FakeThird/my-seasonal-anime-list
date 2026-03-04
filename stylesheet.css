@@ -1,0 +1,332 @@
+@font-face {
+    font-family: "AGRevueCyr Roman Medium";
+    src: url("fonts/AGRevueCyr Roman Medium.ttf") format("truetype");
+}
+
+:root {
+  /* colors */
+  --color-header: rgb(18, 18, 18);
+  --color-body: rgb(24, 68, 107);
+  --color-secondary: rgb(46, 81, 162);
+  --color-ternary: rgb(34, 34, 34);
+  --color-text-primary: rgb(255, 255, 255);
+  --color-text-header: rgb(178, 191, 233);
+  --color-text-subheader: rgb(88, 83, 76);
+  --border-color: rgb(34, 34, 34);
+  --modal-cover-color: rgba(24, 35, 23, 0.7); 
+  
+  /* font-size */
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-24: 24px;
+  --fs-30: 30px;
+  --fs-36: 36px;
+  --fs-48: 48px;
+  --fs-60: 60px;
+  --fs-72: 72px;
+
+  /* font-weight */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
+  --fw-extra-bold: 800;
+
+  /* font-family */
+  --ff-heading:  'AGRevueCyr Roman Medium';
+  --ff-body:    'Verdana';
+
+  /* horizontal padding */
+  --pad-x-xxsmall: 4px;
+  --pad-x-xsmall: 8px;
+  --pad-x-small: 12px;
+  --pad-x-default: 16px;
+  --pad-x-large: 25px;
+  --pad-x-xlarge: 40px;
+  --pad-x-xxlarge: 64px;
+  
+  /* vertcal padding */
+  --pad-y-xxsmall: 2px;
+  --pad-y-xsmall: 4px;
+  --pad-y-small: 6px;
+  --pad-y-default: 8px;  
+  --pad-y-large: 13px;
+  --pad-y-xlarge: 20px;
+  --pad-y-xxlarge: 32px;
+
+  /* borders */
+  --border-radius: 2px;
+
+  /* margin */
+  --mar-xxsmall: 4px;
+  --mar-xsmall: 7px;
+  --mar-small: 10px;
+  --mar-default: 16px;  
+  --mar-large: 25px;
+  --mar-xlarge: 40px;
+  --mar-xxlarge: 60px;
+  --mar-section-separation-default: 100px;
+  --mar-section-separation-large: 150px;
+
+  /* default html styles*/
+  font-size: var(--fs-14);
+  font-family: var(--ff-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animations */
+@keyframes smooth-fade {   
+    0% {
+        transform: translateY(100px);
+        opacity: 0%;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 100%;
+    }
+}
+
+/* Global Styles */
+body, body * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+img {
+    display: block;
+}
+
+body {
+    color: var(--color-text-primary);
+    background-color: var(--color-body);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--ff-body);
+}
+
+/* Header Styles */
+header {
+    width: 100vw;
+    height: 100px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 10em;
+    z-index: 1;
+    
+    .header-overlay {
+        width: 100vw;
+        height: inherit;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background-color: var(--color-header);
+    }
+    .title-container {
+        display: flex;
+        justify-content: left;
+        font-family: var(--ff-heading);
+        font-size: 3em;
+
+    }
+}
+
+.anime-section {
+    padding-top: 12em;   
+    display: flex;
+}
+
+.anime-list-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-template-columns: 3fr;
+    column-gap: 1em;
+    margin-left: 10em;
+    background-color:  var(--color-header);
+
+    .search-bar{
+        width: 40ch;
+        padding: 0.5em 1em;
+        border-radius: 25px;
+        font-size: 1.1em;
+        font-family: var(--ff-body);
+    }   
+}
+
+.anime-list-container > * {
+    margin: 1em;
+}
+
+.anime-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+    overflow-y: scroll;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10% 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10% 100%);
+    height: 65vh;
+    width: 45ch;
+    padding-top: 1em;
+    overflow-x: hidden;
+    
+    figure:hover {
+        transform: scale(1.1);
+    }
+
+    /* Hiding Scrollbar for all Browsers */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+figure {
+    animation: smooth-fade 1.7s ease 1;
+    display: flex;
+    border: var(--border-color) 1px solid;
+    font: var(--ff-body) var(--fw-extra-bold);
+    transition: transform 0.3s;
+    padding: 1em;
+    margin: 0.5em 0;
+
+    .image{
+        background-size: cover;
+        width: 100px;
+        aspect-ratio: 2/3;
+    }
+
+    .description {
+        margin-left: 1em;
+        width: 0%;
+        flex: 1;
+        overflow: hidden; 
+        min-width: 0;
+        white-space: nowrap;
+
+        .title {
+            color: var(--color-text-header);
+            font-size: 1.2rem;
+            font-weight: 900;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; 
+            overflow: hidden;
+            white-space: normal; 
+        }
+        p {
+            color: var(--color-text-subheader);            
+            font-size: 0.8rem;
+            padding-bottom: 0.5em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .layer {
+            text-transform: uppercase;
+            padding: 0.4em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .light {
+            background-color: rgb(24, 24, 24);
+        }
+        span {
+            font-weight: var(--fw-bold);
+        }
+    }
+}
+
+.list-container {
+    height: 76vh;
+    width: 100%;
+    margin-right: 10em;
+    grid-template-columns: 3fr;
+    column-gap: 1em;
+    padding: 1em;
+    background-color:  var(--color-header);
+
+}
+
+.table-wrapper {
+    height: 70vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 3em;
+    &::-webkit-scrollbar { display: none; }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 10% 100%);
+    mask-image: linear-gradient(to top, transparent 0%, black 10% 100%);
+}
+
+.anime-list {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    th {
+        padding: 0.75em 1em;
+        text-align: left;
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;  
+        top: 0;
+        background-color: var(--color-secondary);
+        z-index: 1;
+    }
+}
+
+tbody {
+    overflow: unset;
+}
+
+
+/* Alternating row colors */
+.task-row:nth-child(odd) {
+    background-color: rgb(18, 18, 18);
+}
+.task-row:nth-child(even) {
+    background-color: rgb(24, 24, 24);
+}
+
+.task-row:hover {
+    background-color: rgb(35, 35, 35);
+}
+
+.task-row td {
+    padding: 0.75em 1em;
+    font-size: 0.85rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+
+.col-title   { width: 30%; }
+
+.checkbox-icon,
+.delete-btn {
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.delete-btn {
+    color: rgb(180, 50, 50);
+}
+
+.delete-btn:hover {
+    color: rgb(220, 80, 80);
+}
