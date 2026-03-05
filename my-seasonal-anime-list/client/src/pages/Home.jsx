@@ -11,13 +11,13 @@ function HomePage() {
 
     return (
     <main className="home-page">
-        <Header/>
-        <SearchBar
-        searchedAnime={searchedAnime}
-        setSearchedAnime={setSearchedAnime}
-        />
-        <SearchResult/>
-        <AnimeList/>
+            <Header/>
+            <SearchBar
+                searchedAnime={searchedAnime}
+                setSearchedAnime={setSearchedAnime}
+            />
+            <SearchResult searchedAnime={searchedAnime}/>
+            <AnimeList/>
     </main>
     );
 }

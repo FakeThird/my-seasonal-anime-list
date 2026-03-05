@@ -1,9 +1,13 @@
-function AnimeResult({titleEN, titleJP, imgLink, season, year, studio, score})   {
+import { forwardRef } from "react";
+
+const AnimeResult = forwardRef(function AnimeResult(
+    { titleEN, titleJP, imgLink, season, year, studio, score, onClick }, ref
+) {
     const seasonDisplay = (season && year) ? `${season} ${year}` : 'Unknown';
     const studioDisplay = studio ?? 'Unknown';
 
-    return(
-        <div className="anime-list-result">
+    return (
+        <div className="anime-list-result" ref={ref} onClick={onClick}>
             <p style={{
                 backgroundImage: `url(${imgLink})`,
                 backgroundSize: "cover",
@@ -15,8 +19,7 @@ function AnimeResult({titleEN, titleJP, imgLink, season, year, studio, score})  
                 alignItems: "center",
                 justifyContent: "center",
                 color: "white"
-            }}
-            ></p>
+            }}></p>
             <h2>{titleJP}</h2>
             <p>{titleEN}</p>
             <p>Season: {seasonDisplay}</p>
@@ -24,6 +27,6 @@ function AnimeResult({titleEN, titleJP, imgLink, season, year, studio, score})  
             <p>Score: {score}</p>
         </div>
     );
-}
+});
 
 export default AnimeResult;
