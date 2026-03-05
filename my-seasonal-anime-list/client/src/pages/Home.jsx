@@ -1,6 +1,10 @@
 import Header from "../components/Header/Header";
 import { useState } from "react";
+
 import SearchBar from "../components/SearchBar/Searchbar";
+import SearchResult from "../components/SearchResult/SearchResult";
+import AnimeList from "../components/AnimeList/AnimeList";
+
 
 function HomePage() {
     const [searchedAnime, setSearchedAnime] = useState(""); 
@@ -12,6 +16,8 @@ function HomePage() {
         searchedAnime={searchedAnime}
         setSearchedAnime={setSearchedAnime}
         />
+        <SearchResult/>
+        <AnimeList/>
     </main>
     );
 }
