@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import AnimeResult from "./AnimeResult/AnimeResult";
+import AnimeResult from "../AnimeResult/AnimeResult";
 
 function SearchResult() {
     const [animeListJSON, setAnimeListJSON] = useState([]);
