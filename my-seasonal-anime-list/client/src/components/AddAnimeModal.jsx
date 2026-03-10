@@ -1,12 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useState } from "react"
 import { useForm } from 'react-hook-form'
 import Modal from "./ui/modal/Modal"
 
-
-function AddAnimeModal() {
-    const [isVisible, setVisible] = useState(true);
+function AddAnimeModal({ isVisible = true, onClose, onAddSuccess }) {
     const { register, handleSubmit, reset } = useForm()
 
     async function onSubmit(data) {
@@ -31,7 +28,8 @@ function AddAnimeModal() {
             if (response.ok && result.success) {
                 alert('Anime added successfully');
                 reset();
-                setVisible(false);
+                if (onClose) onClose();
+                if (onAddSuccess) onAddSuccess();
             } else {
                 alert('Failed to add anime: ' + (result.message || response.statusText));
             }
@@ -41,9 +39,9 @@ function AddAnimeModal() {
         }
     }
     return (
-        (isVisible) &&
+        (isVisible) && 
         <Modal>
-            <FontAwesomeIcon icon={faXmark} onClick={() => setVisible(false)} />
+            <FontAwesomeIcon icon={faXmark} className="modal-close-icon" onClick={onClose}/>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-element">
                     <label htmlFor="title-input">Title</label>

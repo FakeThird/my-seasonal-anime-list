@@ -1,19 +1,6 @@
 import { useState, useEffect } from "react";
 
-function AnimeList() { 
-    const [animeList, setAnimeList] = useState([]);
-    useEffect(() => {
-        async function fetchAnimeList() {
-            try {
-                const response = await fetch("http://localhost:3000/api/anime-list");   
-                const data = await response.json();
-                setAnimeList(data.animes);
-            } catch (error) {
-                console.error("Error fetching anime list:", error);
-            }
-        } 
-        fetchAnimeList();
-    }, []);
+function AnimeList({ animeList }) {
 
     console.log(animeList);
     return (
