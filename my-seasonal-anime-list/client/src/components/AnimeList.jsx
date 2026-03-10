@@ -1,6 +1,4 @@
 function AnimeList({ animeList, onEdit, onDelete }) {
-
-    console.log(animeList);
     return (
         <table className="anime-list-component">
             <thead>
@@ -16,20 +14,25 @@ function AnimeList({ animeList, onEdit, onDelete }) {
                 </tr>
             </thead>
             <tbody>
-                {animeList.map((anime) => (
-                    <tr key={anime._id} className="anime-row">
-                        <td className="label">{anime.title}</td>
-                        <td className="label">{anime.watched ? "Yes" : "No"}</td>
-                        <td className="label">{anime.currentEp}</td>
-                        <td className="label">{anime.status}</td>
-                        <td className="label">{anime.rating}</td>
-                        <td className="label">{String(anime.op)}</td>
-                        <td className="label">{String(anime.ed)}</td>
-                        <td className="label">
-                            <button className="btn btn-primary" onClick={() => onEdit(anime)}>Edit</button>
-                            <button className="btn btn-danger" onClick={() => onDelete(anime)}>Delete</button>
-                        </td>
-                </tr>))}
+
+                {
+                    (animeList) ?
+                    animeList.map((anime) => (
+                        <tr key={anime._id} className="anime-row">
+                            <td className="label">{anime.title}</td>
+                            <td className="label">{anime.watched ? "Yes" : "No"}</td>
+                            <td className="label">{anime.currentEp}</td>
+                            <td className="label">{anime.status}</td>
+                            <td className="label">{anime.rating}</td>
+                            <td className="label">{String(anime.op)}</td>
+                            <td className="label">{String(anime.ed)}</td>
+                            <td className="label">
+                                <button className="btn btn-primary" onClick={() => onEdit(anime)}>Edit</button>
+                                <button className="btn btn-danger" onClick={() => onDelete(anime)}>Delete</button>
+                            </td>
+                        </tr>
+                    )) : <tr><td colSpan="9">No animes found</td></tr>
+                } 
             </tbody>
         </table>
     )    

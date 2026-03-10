@@ -6,6 +6,7 @@ import Modal from "./ui/modal/Modal"
 function AddAnimeModal({ isVisible = true, onClose, onAddSuccess }) {
     const { register, handleSubmit, reset } = useForm()
 
+    // submits added anime to server to be added in db
     async function onSubmit(data) {
         const anime = {
             "title": data.title,
@@ -17,27 +18,25 @@ function AddAnimeModal({ isVisible = true, onClose, onAddSuccess }) {
             "ed": data.ed || false
         };
 
-        try {
-            const response = await fetch('http://localhost:3000/api/add-anime', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(anime)
-            });
+        // calls the api endpoint that adds an anime to the db
+        const response = await fetch('http://localhost:3000/api/add-anime', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(anime)
+        });
 
-            const result = await response.json();
-            if (response.ok && result.success) {
-                alert('Anime added successfully');
-                reset();
-                if (onClose) onClose();
-                if (onAddSuccess) onAddSuccess();
-            } else {
-                alert('Failed to add anime: ' + (result.message || response.statusText));
-            }
-        } catch (error) {
-            console.error('Error adding anime:', error);
-            alert('An error occurred while adding anime');
+        const result = await response.json();
+        if (response.ok && result.success) {
+            reset();
+            onClose();
+            onAddSuccess();
+        } else {
+            alert('Failed to add anime: ' + (result.message || response.statusText));
         }
     }
+
+    
+
     return (
         (isVisible) && 
         <Modal>

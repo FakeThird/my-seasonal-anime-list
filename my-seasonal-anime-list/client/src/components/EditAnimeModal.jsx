@@ -7,6 +7,7 @@ import Modal from "./ui/modal/Modal"
 function EditAnimeModal({ isVisible = true, onClose, anime, onEditSuccess }) {
     const { register, handleSubmit, reset } = useForm();
 
+    // sets the anime to be edited
     useEffect(() => {
         if (anime) {
             reset({
@@ -19,8 +20,9 @@ function EditAnimeModal({ isVisible = true, onClose, anime, onEditSuccess }) {
                 ed: anime.ed
             });
         }
-    }, [anime, reset]);
+    }, [anime]);
 
+    // submits editted anime to server to be added in db
     async function onSubmit(data) {
         const updatedAnime = {
             title: data.title,
@@ -32,34 +34,33 @@ function EditAnimeModal({ isVisible = true, onClose, anime, onEditSuccess }) {
             ed: data.ed || false
         };
 
-        try {
-            const response = await fetch(`http://localhost:3000/api/update-anime/${anime._id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updatedAnime)
-            });
+        // calls the api endpoint that updates the anime in the db
+        const response = await fetch(`http://localhost:3000/api/update-anime/${anime._id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedAnime)
+        });
 
-            const result = await response.json();
-            if (response.ok && result.success) {
-                alert('Anime updated successfully');
-                reset();
-                if (onClose) onClose();
-                if (onEditSuccess) onEditSuccess();
-            } else {
-                alert('Failed to update anime: ' + (result.message || response.statusText));
-            }
-        } catch (error) {
-            console.error('Error updating anime:', error);
-            alert('An error occurred while updating anime');
+        const result = await response.json();
+        if (response.ok && result.success) {
+            alert('Anime updated successfully');
+            reset();
+            onClose();
+            onEditSuccess();
+        } else {
+            alert('Failed to update anime: ' + (result.message || response.statusText));
         }
     }
-    console.log(anime);
 
+    function onCloseButtonClick() {
+        reset();
+        onClose();
+    }
 
     return (
         (isVisible) &&
         <Modal>
-            <FontAwesomeIcon icon={faXmark} className="modal-close-icon" onClick={onClose}/>
+            <FontAwesomeIcon icon={faXmark} className="modal-close-icon" onClick={onCloseButtonClick}/>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-element">
                     <label htmlFor="title-input">Title</label>
