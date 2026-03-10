@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import { connectDB } from './config/database.js';
 import addUserAnimeRouter from "./routes/AddUserAnimeRoute.js";
 import fetchUserAnimeRouter from "./routes/FetchUserAnimesRoute.js";
+import updateUserAnimeRouter from "./routes/UpdateUserAnimeRoute.js";
+import deleteUserAnimeRouter from "./routes/DeleteUserAnimeRoute.js";
 
 dotenv.config();    
 const app = express();
@@ -16,6 +18,8 @@ app.use(express.json());
 // Routes
 app.use("/api", addUserAnimeRouter);
 app.use("/api", fetchUserAnimeRouter);
+app.use("/api", updateUserAnimeRouter);
+app.use("/api", deleteUserAnimeRouter);
 
 // Test route
 app.get("/api/test", (req, res) => res.json({ message: "Server is running" }));

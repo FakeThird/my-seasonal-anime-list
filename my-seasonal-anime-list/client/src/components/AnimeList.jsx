@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-
-function AnimeList({ animeList }) {
+function AnimeList({ animeList, onEdit, onDelete }) {
 
     console.log(animeList);
     return (
@@ -28,8 +26,9 @@ function AnimeList({ animeList }) {
                         <td className="label">{String(anime.op)}</td>
                         <td className="label">{String(anime.ed)}</td>
                         <td className="label">
-                        <button className="btn btn-danger">Delete</button>
-                    </td>
+                            <button className="btn btn-primary" onClick={() => onEdit(anime)}>Edit</button>
+                            <button className="btn btn-danger" onClick={() => onDelete(anime)}>Delete</button>
+                        </td>
                 </tr>))}
             </tbody>
         </table>
