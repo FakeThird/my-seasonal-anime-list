@@ -2,13 +2,27 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
+    background-color: rgb(46, 81, 162);
+    color: rgb(255, 255, 255);
+    padding: 0.75em 1.25em;
     border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     z-index: 1000;
-    font-size: 14px;
+    font-size: 0.85rem;
+    font-family: 'Verdana', sans-serif;
     max-width: 300px;
     word-wrap: break-word;
+    animation: toast-fade-in 0.3s ease;
+}
+
+@keyframes toast-fade-in {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

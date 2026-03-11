@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-
+import './SearchAnime.css'
 const BASE = 'https://api.jikan.moe/v4';
 
 function SearchAnime({ onAnimeClick }) {
@@ -101,18 +101,31 @@ function SearchAnime({ onAnimeClick }) {
                     const isLast = index === animeList.length - 1;
                     return (
                         <div
-                            key={`${anime.mal_id}-${index}`} 
+                            key={`${anime.mal_id}-${index}`}
                             ref={isLast ? lastElementRef : null}
-                            style={{ padding: '20px', borderBottom: '1px solid #ccc', cursor: 'pointer' }}
+                            className="anime-card"
                             onClick={() => onAnimeClick && onAnimeClick(anime)}
                         >
-                            <div style={{ backgroundImage: `url(${anime.images.jpg.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '150px', height: '200px'}}></div>
-                            <h3>{anime.title}</h3>
-                            <p>Score: {anime.score}</p>
+                            <div 
+                                className="anime-card-image"
+                                style={{ backgroundImage: `url(${anime.images.jpg.image_url})` }}
+                            />
+                            <div className="anime-card-info">
+                                <h3 className="anime-card-title">{anime.title}</h3>
+                                <p className="anime-card-english">{anime.title_english}</p>
+                                <div className="anime-card-layer light">
+                                    <span>SEASON: </span>{anime.season ? `${anime.season} ${anime.year}` : 'N/A'}
+                                </div>
+                                <div className="anime-card-layer">
+                                    <span>STUDIO: </span>{anime.studios?.[0]?.name ?? 'N/A'}
+                                </div>
+                                <div className="anime-card-layer light">
+                                    <span>SCORE: </span>{anime.score ?? 'N/A'}
+                                </div>
+                            </div>
                         </div>
                     );
                 })}
-                
                 {isLoadingRef.current && <div className="loader">Loading more anime...</div>}
             </div>
         </div>

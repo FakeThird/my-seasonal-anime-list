@@ -1,0 +1,128 @@
+.search-anime-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(18, 18, 18);
+    height: 100%;
+}
+
+.search-bar {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+}
+
+.search-bar input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-size: 1.1em;
+    font-family: 'Verdana', sans-serif;
+    background-color: rgb(34, 34, 34);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.search-bar input:focus {
+    border-color: rgb(46, 81, 162);
+}
+
+.search-results-container {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10% 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10% 100%);
+    height: 65vh;
+    width: 100%;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.anime-card {
+    animation: search-smooth-fade 1.7s ease 1;
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Verdana';
+    font-weight: 800;
+    transition: transform 0.3s;
+    padding: 1em;
+    margin: 0.5em 0;
+    cursor: pointer;
+}
+
+.anime-card:hover {
+    transform: scale(1.05);
+}
+
+.anime-card-image {
+    background-size: cover;
+    background-position: center;
+    width: 100px;
+    aspect-ratio: 2/3;
+    flex-shrink: 0;
+}
+
+.anime-card-info {
+    margin-left: 1em;
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.anime-card-title {
+    color: rgb(178, 191, 233);
+    font-size: 1.2rem;
+    font-weight: 900;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    white-space: normal;
+    margin: 0 0 0.2em 0;
+}
+
+.anime-card-english {
+    color: rgb(88, 83, 76);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0 0.4em 0;
+}
+
+.anime-card-layer {
+    text-transform: uppercase;
+    padding: 0.4em;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgb(255, 255, 255);
+}
+
+.anime-card-layer.light {
+    background-color: rgb(24, 24, 24);
+}
+
+.anime-card-layer span {
+    font-weight: 700;
+}
+
+.loader {
+    text-align: center;
+    padding: 1em;
+    color: rgb(88, 83, 76);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+@keyframes search-smooth-fade {
+    0% {
+        transform: translateY(100px);
+        opacity: 0%;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 100%;
+    }
+}

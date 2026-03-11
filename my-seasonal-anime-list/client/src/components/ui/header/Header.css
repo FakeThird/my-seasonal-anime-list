@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "AGRevueCyr Roman Medium";
+    src: url("fonts/AGRevueCyr Roman Medium.ttf") format("truetype");
+}
+
+.header-component {
+    width: 100vw;
+    height: 100px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10em;
+    z-index: 10;
+    color: rgb(255, 255, 255);
+}
+
+.header-overlay {
+    width: 100vw;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: rgb(18, 18, 18);
+}
+
+.title-container {
+    display: flex;
+    justify-content: left;
+    font-family: "AGRevueCyr Roman Medium";
+    font-size: 3em;
+}

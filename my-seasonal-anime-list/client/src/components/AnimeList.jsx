@@ -1,3 +1,5 @@
+import './AnimeList.css'
+
 function AnimeList({ animeList, onEdit, onDelete }) {
     return (
         <table className="anime-list-component">

@@ -1,0 +1,81 @@
+.anime-list-component {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.anime-list-component thead tr {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.anime-list-component thead .label {
+    padding: 0.75em 1em;
+    text-align: left;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgb(34, 34, 34);
+    background-color: rgb(46, 81, 162);
+    color: rgb(255, 255, 255);
+}
+
+.anime-row:nth-child(odd) {
+    background-color: rgb(18, 18, 18);
+}
+.anime-row:nth-child(even) {
+    background-color: rgb(24, 24, 24);
+}
+.anime-row:hover {
+    background-color: rgb(35, 35, 35);
+}
+
+.anime-row .label {
+    padding: 0.75em 1em;
+    font-size: 0.85rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.anime-list-component tbody tr td[colspan="8"] {
+    text-align: center;
+    padding: 40px;
+    color: rgb(88, 83, 76);
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.btn {
+    padding: 0.3em 0.75em;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Verdana', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn + .btn {
+    margin-left: 0.5em;
+}
+
+.btn-primary {
+    background-color: rgb(46, 81, 162);
+    color: rgb(255, 255, 255);
+}
+.btn-primary:hover {
+    background-color: rgb(60, 100, 190);
+}
+
+.btn-danger {
+    background-color: rgb(180, 50, 50);
+    color: rgb(255, 255, 255);
+}
+.btn-danger:hover {
+    background-color: rgb(220, 80, 80);
+}

@@ -1,7 +1,10 @@
+import './Header.css'
+
 function Header({content}) {
     return(
         <header className="header-component">
-            <h1>{content}</h1>
+            <div className="header-overlay"></div>
+            <div className="title-container">{content}</div>
         </header>
     )    
 }
