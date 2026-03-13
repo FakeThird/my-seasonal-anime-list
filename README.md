@@ -33,9 +33,9 @@ git clone https://github.com/FakeThird/CMSC129-Lab1-DomingoKAM_HullezaCJS.git
 
 # API endpoints
 ```
-Fetching Data from Server:  method=GET route=/api/anime-list
-Adding Data to DB:  method=POST route=/api/add-anime
-Update Data of an anime in DB: method=PUT route=/api/update-anime/:id
+Fetching Data from Server:     method=GET route=/api/anime-list
+Adding Data to DB:             method=POST route=/api/add-anime
+Update Data of an anime in DB: method=PATCH route=/api/update-anime/:id
 Delete Data of an Anime in DB: method=DELETE route=/api/delete-anime/:id
 ```
 
