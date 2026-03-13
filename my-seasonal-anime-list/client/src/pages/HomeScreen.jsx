@@ -62,6 +62,29 @@ function HomeScreen() {
     showToast(`Updated "${updatedAnime.title}"`);
   }
 
+  // used when a checkbox is toggled in the list
+  async function handleToggle(anime, field, value) {
+    try {
+      // create updated object by merging changed field
+      const updated = { ...anime, [field]: value };
+      const response = await fetch(`http://localhost:3000/api/update-anime/${anime._id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updated)
+      });
+      const result = await response.json();
+      if (response.ok && result.success) {
+        // refresh the list (could also optimistically update state instead)
+        fetchAnimeList();
+        showToast(`Updated "${result.anime.title}"`);
+      } else {
+        console.error('Toggle update failed:', result.message || response.statusText);
+      }
+    } catch (err) {
+      console.error('Error toggling field:', err);
+    }
+  }
+
   function handleDeleteSuccess() {
     console.log('handleDeleteSuccess called');
     fetchAnimeList();
@@ -97,7 +120,12 @@ function HomeScreen() {
             </select>
           </div>
           
-          <AnimeList animeList={filteredAnimeList} onEdit={handleEdit} onDelete={handleDelete} />
+          <AnimeList
+            animeList={filteredAnimeList}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onToggle={handleToggle}
+          />
         </div>
       </div>
     

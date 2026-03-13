@@ -1,6 +1,6 @@
 import './AnimeList.css'
 
-function AnimeList({ animeList, onEdit, onDelete }) {
+function AnimeList({ animeList, onEdit, onDelete, onToggle }) {
     return (
         <table className="anime-list-component">
             <thead>
@@ -21,12 +21,30 @@ function AnimeList({ animeList, onEdit, onDelete }) {
                     animeList.map((anime) => (
                         <tr key={anime._id} className="anime-row">
                             <td className="label col-title">{anime.title}</td>
-                            <td className="label col-watched"><input type="checkbox" checked={anime.watched} readOnly /></td>
+                            <td className="label col-watched">
+                                <input
+                                    type="checkbox"
+                                    checked={anime.watched}
+                                    onChange={() => onToggle && onToggle(anime, 'watched', !anime.watched)}
+                                />
+                            </td>
                             <td className="label col-episode">{anime.currentEp}</td>
                             <td className="label col-status">{anime.status}</td>
                             <td className="label col-rating">{anime.rating}</td>
-                            <td className="label col-op"><input type="checkbox" checked={anime.op} readOnly /></td>
-                            <td className="label col-ed"><input type="checkbox" checked={anime.ed} readOnly /></td>
+                            <td className="label col-op">
+                                <input
+                                    type="checkbox"
+                                    checked={anime.op}
+                                    onChange={() => onToggle && onToggle(anime, 'op', !anime.op)}
+                                />
+                            </td>
+                            <td className="label col-ed">
+                                <input
+                                    type="checkbox"
+                                    checked={anime.ed}
+                                    onChange={() => onToggle && onToggle(anime, 'ed', !anime.ed)}
+                                />
+                            </td>
                             <td className="label col-actions">
                                 <button className="btn btn-primary" onClick={() => onEdit(anime)}>Edit</button>
                                 <button className="btn btn-danger" onClick={() => onDelete(anime)}>Delete</button>
