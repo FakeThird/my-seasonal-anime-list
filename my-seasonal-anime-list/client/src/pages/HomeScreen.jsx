@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import AddAnimeModal from "../components/AddAnimeModal";
-import EditAnimeModal from "../components/EditAnimeModal";
 import DeleteAnimeModal from "../components/DeleteAnimeModal";
 import AnimeList from "../components/AnimeList";
 import Header from "../components/ui/header/Header";
@@ -10,9 +9,7 @@ import './HomeScreen.css'
 
 function HomeScreen() {
   const [showAddModal, setShowAddModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [editAnime, setEditAnime] = useState(null);
   const [deleteAnime, setDeleteAnime] = useState(null);
   const [animeList, setAnimeList] = useState([]);
   const [selectedAnime, setSelectedAnime] = useState(null);
@@ -33,9 +30,17 @@ function HomeScreen() {
     }
   }
 
-  function handleEdit(anime) {
-    setEditAnime(anime);
-    setShowEditModal(true);
+  async function handleEdit(updatedAnime) {
+    const response = await fetch(`http://localhost:3000/api/update-anime/${updatedAnime._id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedAnime)
+    });
+    const result = await response.json();
+    if (response.ok && result.success) {
+      fetchAnimeList();
+      showToast(`Updated "${result.anime.title}"`);
+    }
   }
 
   function handleDelete(anime) {
@@ -57,13 +62,7 @@ function HomeScreen() {
     showToast(`Added "${newAnime.title}"`);
   }
 
-  function handleEditSuccess(updatedAnime) {
-    fetchAnimeList();
-    showToast(`Updated "${updatedAnime.title}"`);
-  }
-
   function handleDeleteSuccess() {
-    console.log('handleDeleteSuccess called');
     fetchAnimeList();
     showToast('Anime deleted successfully');
   }
@@ -111,12 +110,6 @@ function HomeScreen() {
         selectedAnime={selectedAnime}
         animeList={animeList}
         showToast={showToast}
-      />
-      <EditAnimeModal
-        isVisible={showEditModal}
-        onClose={() => setShowEditModal(false)}
-        anime={editAnime}
-        onEditSuccess={handleEditSuccess}
       />
       <DeleteAnimeModal
         isVisible={showDeleteModal}
