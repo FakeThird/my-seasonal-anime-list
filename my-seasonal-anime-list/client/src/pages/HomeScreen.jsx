@@ -96,7 +96,12 @@ function HomeScreen() {
             </select>
           </div>
           
-          <AnimeList animeList={filteredAnimeList} onEdit={handleEdit} onDelete={handleDelete} />
+          <AnimeList
+            animeList={filteredAnimeList}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onToggle={handleToggle}
+          />
         </div>
       </div>
     
